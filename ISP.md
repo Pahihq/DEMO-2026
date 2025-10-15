@@ -1,10 +1,18 @@
 ```bash
-# На всех хостах
+ # Настойка времени
  timedatectl set-timezone Europe/Moscow
+```
+
+```bash
+# Настойка hostname
+hostnamectl set-hostname isp.au-team.irpo; exec bash
 ```
 
 1. Настройка ip на isp
 ```bash
+# Настраиваем WAN на DHCP
+# Настраиваем в сторону HQ 172.16.1.0/28
+# Настраиваем в сторону BR 172.16.2.0/28
 nmtui
 ```
 

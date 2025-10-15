@@ -1,5 +1,16 @@
-1. Настройка ip на
 ```bash
+ # Настойка времени
+ timedatectl set-timezone Europe/Moscow
+```
+
+```bash
+# Настойка hostname
+hostnamectl set-hostname br-rtr.au-team.irpo; exec bash
+```
+
+1. Настройка сети
+```bash
+# В сторону клиента не более 16 адресов /28
 nmtui
 ```
 
@@ -109,21 +120,3 @@ nano /etc/sysconfig/nftables.conf
 include "/etc/nftables/nftables.nft"
 systemctl enable --now nftables
 ```
-
-7. Настройте протокол динамической конфигурации хостов для сети 
-```bash 
-dnf install dhcp-server -y
-cp /usr/share/doc/dhcp-server/dhcpd.conf.example /etc/dhcp/dhcpd.conf
-
-nano /etc/dhcp/dhcpd.conf
-
-subnet 192.168.200.0 netmask 255.255.255.240 {  
-range 192.168.200.2 192.168.100.14;  
-option domain-name-servers 192.168.200.2;  
-option domain-name "au-team.irpo";  
-option routers 192.168.200.1;  
-default-lease-time 600;  
-max-lease-time 7200;  
-}
-
-systemctl enable --now dhcpd
