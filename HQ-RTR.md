@@ -8,10 +8,11 @@
 hostnamectl set-hostname hq-rtr.au-team.irpo; exec bash
 ```
 
-1. Настройка сети
+1. Настройка сети до ISP
 ```bash
 nmtui
 ```
+<img width="782" height="535" alt="image" src="https://github.com/user-attachments/assets/eae9d9da-969e-47c1-b0c9-d6d7ffc08b07" />
 
 2. Создание пользователей
 ```bash
@@ -27,7 +28,11 @@ visudo
 # Добавить строчки
 sshuser ALL=(ALL) NOPASSWD: ALL
 net_admin ALL=(ALL) NOPASSWD: ALL
+# Esc и :wq
 ```
+<img width="797" height="344" alt="image" src="https://github.com/user-attachments/assets/52cc290f-a12c-4dd9-a764-30ca6e554694" />
+<img width="873" height="187" alt="image" src="https://github.com/user-attachments/assets/eeae9a64-3d74-4f3f-b369-88d4a0a38464" />
+
 
 3. Настройка vlan
 Для `100`
