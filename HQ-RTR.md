@@ -48,6 +48,7 @@ net_admin ALL=(ALL) NOPASSWD: ALL
 - переходим к «КОНФИГУРАЦИЯ IPv4»
 - задаём **адрес IPv4** для VLAN (192.168.100.1/27)
 ```
+<img width="800" height="640" alt="image" src="https://github.com/user-attachments/assets/ab679501-b28b-4a96-b3e5-d241c528b04e" />
 
 Для `200`
 ```bash
@@ -62,6 +63,7 @@ net_admin ALL=(ALL) NOPASSWD: ALL
 - переходим к «КОНФИГУРАЦИЯ IPv4»
 - задаём **адрес IPv4** для VLAN (192.168.200.1/28)
 ```
+<img width="797" height="626" alt="image" src="https://github.com/user-attachments/assets/1b04912a-4126-4d06-919c-8178415896e0" />
 
 Для `999`
 ```bash
@@ -76,6 +78,12 @@ net_admin ALL=(ALL) NOPASSWD: ALL
 - переходим к «КОНФИГУРАЦИЯ IPv4»
 - задаём **адрес IPv4** для VLAN (192.168.0.1/29)
 ```
+<img width="800" height="629" alt="image" src="https://github.com/user-attachments/assets/7dd6bb7e-70a9-47ac-add4-3d693833a448" />
+
+Проверка:
+
+<img width="750" height="185" alt="image" src="https://github.com/user-attachments/assets/377f34ad-dadd-43c6-bafc-bc40244543e1" />
+
 
 4. Настройка ssh
 ```bash
@@ -83,6 +91,8 @@ nano /etc/selinux/config
 # Заменив текст SELINUX=enforcing на SELINUX=permissive.
 setenforce 0
 ```
+<img width="798" height="119" alt="image" src="https://github.com/user-attachments/assets/7d328fae-c075-4680-bb35-5c7e965d865d" />
+
 
 ```bash
 nano /etc/ssh/sshd_config
@@ -94,6 +104,8 @@ Banner /etc/ssh_banner
 
 systemctl restart sshd
 ```
+<img width="362" height="443" alt="image" src="https://github.com/user-attachments/assets/4d69f30c-c425-4453-be06-20620866bf00" />
+<img width="252" height="60" alt="image" src="https://github.com/user-attachments/assets/98fb6f00-77fb-44f5-ab13-63d37c838101" />
 
 5. GRE тунель
 ```bash
@@ -111,6 +123,8 @@ systemctl restart sshd
 # Для корректной работы протокола динамической маршрутизации требуется увеличить параметр TTL на интерфейсе туннеля:
 nmcli connection modify tun1 ip-tunnel.ttl 64
 ```
+<img width="745" height="395" alt="image" src="https://github.com/user-attachments/assets/1bd8fa55-fab1-4a3c-99ee-606f9c1c6d01" />
+
 
 6. Настройка динамической маршрутизации средствами FRR
 ```bash
@@ -120,6 +134,8 @@ nano /etc/frr/daemons
 # Меняем на ospfd = yes
 systemctl enable --now frr
 ```
+<img width="197" height="301" alt="image" src="https://github.com/user-attachments/assets/d3608361-d488-4c94-a92c-fff3fe440267" />
+
 
 ```bash
 vtysh
@@ -165,7 +181,7 @@ nft add rule ip nat postrouting oifname "ens192" masquerade
 nft list ruleset > /etc/nftables.conf
 # Включаем использование данного файла в sysconfig
 nano /etc/sysconfig/nftables.conf
-include "/etc/nftables/nftables.nft"
+include "/etc/nftables.conf"
 systemctl enable --now nftables
 ```
 
@@ -177,7 +193,7 @@ cp /usr/share/doc/dhcp-server/dhcpd.conf.example /etc/dhcp/dhcpd.conf
 nano /etc/dhcp/dhcpd.conf
 
 subnet 192.168.200.0 netmask 255.255.255.240 {  
-range 192.168.200.3 192.168.100.14;  
+range 192.168.200.3 192.168.200.14;  
 option domain-name-servers 192.168.200.2;  
 option domain-name "au-team.irpo";  
 option routers 192.168.200.1;  
