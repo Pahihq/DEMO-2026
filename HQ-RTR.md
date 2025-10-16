@@ -194,7 +194,7 @@ nano /etc/dhcp/dhcpd.conf
 
 subnet 192.168.200.0 netmask 255.255.255.240 {  
 range 192.168.200.3 192.168.200.14;  
-option domain-name-servers 192.168.200.2;  
+option domain-name-servers 192.168.100.5;  
 option domain-name "au-team.irpo";  
 option routers 192.168.200.1;  
 default-lease-time 600;  
