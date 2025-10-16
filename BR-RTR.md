@@ -13,6 +13,10 @@ hostnamectl set-hostname br-rtr.au-team.irpo; exec bash
 # В сторону клиента не более 16 адресов /28
 nmtui
 ```
+<img width="840" height="581" alt="image" src="https://github.com/user-attachments/assets/6d0a327d-ce5c-4664-9924-a87a6b391b7a" />
+<img width="831" height="281" alt="image" src="https://github.com/user-attachments/assets/8021c791-d237-4502-b277-282bc00113cf" />
+
+
 
 2. Создание пользователей
 
@@ -65,6 +69,8 @@ systemctl restart sshd
 # Для корректной работы протокола динамической маршрутизации требуется увеличить параметр TTL на интерфейсе туннеля:
 nmcli connection modify tun1 ip-tunnel.ttl 64
 ```
+<img width="774" height="701" alt="image" src="https://github.com/user-attachments/assets/e024f36e-c133-4a76-b48f-218f06aa2f8e" />
+
 
 5. Настройка динамической маршрутизации средствами FRR
 ```bash
@@ -80,8 +86,8 @@ vtysh
 configure terminal
 router ospf
 passive-interface default
-# Указываем локальные сети HQ и GRE 
-network 192.168.250.0/24 area 0
+# Указываем локальные сети BR и GRE 
+network 192.168.250.0/28 area 0
 network 10.10.0.0/30 area 0
 
 area 0 authentication
@@ -117,6 +123,6 @@ nft add rule ip nat postrouting oifname "ens192" masquerade
 nft list ruleset > /etc/nftables.conf
 # Включаем использование данного файла в sysconfig
 nano /etc/sysconfig/nftables.conf
-include "/etc/nftables/nftables.nft"
+include "/etc/nftables.conf"
 systemctl enable --now nftables
 ```
