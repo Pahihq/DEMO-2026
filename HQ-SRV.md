@@ -22,6 +22,8 @@ hostnamectl set-hostname hq-srv.au-team.irpo; exec bash
 - переходим к «КОНФИГУРАЦИЯ IPv4»
 - задаём **адрес IPv4** для VLAN (192.168.100.5/27)
 ```
+<img width="1140" height="901" alt="image" src="https://github.com/user-attachments/assets/7a2e42db-ad7c-4352-ad73-627de7d9cd19" />
+
 
 2. Настройка bind 
 ```bash
@@ -40,7 +42,7 @@ listen-on port 53 { any; };
 listen-on-v6 port 53 { none;};
 allow-query     { any; };
 forwarders	{77.88.8.8;};
-dnssec-validation none;
+dnssec-validation no;
 ```
 
 ```bash
@@ -63,6 +65,10 @@ zone "200.168.192.in-addr.arpa" {
 #Проверяем конфигурации 
 named-checkconf
 ```
+<img width="871" height="346" alt="image" src="https://github.com/user-attachments/assets/f6b12fe1-d8f3-4943-9f07-ae6696cfcf96" />
+<img width="734" height="494" alt="image" src="https://github.com/user-attachments/assets/843d9636-c446-4e26-82f9-bbcba65f3dc6" />
+
+
 
 3. Создание локальных зон DNS
 ```bash
@@ -80,7 +86,7 @@ $TTL 1D
 					3H )	; minimum
 
 	IN	NS	au-team.irpo.
-	IN	A	192.168.200.5
+	IN	A	192.168.100.5
 hq-rtr	IN	A	192.168.200.1
 hq-rtr	IN	A	192.168.100.1
 hq-rtr	IN	A	192.168.0.1
@@ -143,4 +149,9 @@ zone 0.in-addr.arpa/IN: loaded serial 0
 ```bash
 # Прописываем собсвенный ip в днс
 nmtui
-
+```
+5. Запускаем сервис
+```bash
+systemctl enable --now named
+systemctl status named
+```
