@@ -28,16 +28,12 @@ hostnamectl set-hostname hq-srv.au-team.irpo; exec bash
 ```bash
  useradd sshuser -u 2026 -U
  passwd sshuser #P@ssw0rd
- useradd net_admin -U
- passwd net_admin #P@ssw0rd
  usermod -aG wheel sshuser
- usermod -aG wheel net_admin
  
 # Настроить команду sudo можно в файле /etc/sudoers, в нём хранятся все нужные параметры.
 visudo
 # Добавить строчки
 sshuser ALL=(ALL) NOPASSWD: ALL
-net_admin ALL=(ALL) NOPASSWD: ALL
 # Esc и :wq
 ```
 <img width="797" height="344" alt="image" src="https://github.com/user-attachments/assets/52cc290f-a12c-4dd9-a764-30ca6e554694" />
