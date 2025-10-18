@@ -22,6 +22,7 @@ nmtui
 
 2. Настройка форвардинга
 ```bash
+# Может после перезагрузки отваливаться достаточно заново применить
 sysctl -w net.ipv4.ip_forward=1
 sysctl net.ipv4.ip_forward >> /etc/sysctl.conf
 syscctl -p 
