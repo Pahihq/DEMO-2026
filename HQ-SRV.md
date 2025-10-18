@@ -24,8 +24,48 @@ hostnamectl set-hostname hq-srv.au-team.irpo; exec bash
 ```
 <img width="1140" height="901" alt="image" src="https://github.com/user-attachments/assets/7a2e42db-ad7c-4352-ad73-627de7d9cd19" />
 
+2. Создание пользователей
+```bash
+ useradd sshuser -u 2026 -U
+ passwd sshuser #P@ssw0rd
+ useradd net_admin -U
+ passwd net_admin #P@ssw0rd
+ usermod -aG wheel sshuser
+ usermod -aG wheel net_admin
+ 
+# Настроить команду sudo можно в файле /etc/sudoers, в нём хранятся все нужные параметры.
+visudo
+# Добавить строчки
+sshuser ALL=(ALL) NOPASSWD: ALL
+net_admin ALL=(ALL) NOPASSWD: ALL
+# Esc и :wq
+```
+<img width="797" height="344" alt="image" src="https://github.com/user-attachments/assets/52cc290f-a12c-4dd9-a764-30ca6e554694" />
+<img width="873" height="187" alt="image" src="https://github.com/user-attachments/assets/eeae9a64-3d74-4f3f-b369-88d4a0a38464" />
 
-2. Настройка bind 
+3. Настройка ssh
+```bash
+nano /etc/selinux/config
+# Заменив текст SELINUX=enforcing на SELINUX=permissive.
+setenforce 0
+```
+<img width="798" height="119" alt="image" src="https://github.com/user-attachments/assets/7d328fae-c075-4680-bb35-5c7e965d865d" />
+
+
+```bash
+nano /etc/ssh/sshd_config
+# Находим строчки и меняем если нет то добовляем
+Port 2026
+AllowUsers sshuser
+MaxAuthTries 2
+Banner /etc/ssh_banner
+
+systemctl restart sshd
+```
+<img width="362" height="443" alt="image" src="https://github.com/user-attachments/assets/4d69f30c-c425-4453-be06-20620866bf00" />
+<img width="252" height="60" alt="image" src="https://github.com/user-attachments/assets/98fb6f00-77fb-44f5-ab13-63d37c838101" />
+
+4. Настройка bind 
 ```bash
 dnf install bind bind-utils
 nano /etc/named.conf
@@ -70,7 +110,7 @@ named-checkconf
 
 
 
-3. Создание локальных зон DNS
+5. Создание локальных зон DNS
 ```bash
 mkdir /var/named/master
 cp /var/named/named.localhost /var/named/master/au-team.db
@@ -147,12 +187,12 @@ zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
 zone 0.in-addr.arpa/IN: loaded serial 0
 ```
 
-4. Настройка dns 
+6. Настройка dns 
 ```bash
 # Прописываем собсвенный ip в днс
 nmtui
 ```
-5. Запускаем сервис
+7. Запускаем сервис
 ```bash
 systemctl enable --now named
 systemctl status named
