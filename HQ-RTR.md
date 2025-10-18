@@ -84,28 +84,20 @@ net_admin ALL=(ALL) NOPASSWD: ALL
 
 <img width="750" height="185" alt="image" src="https://github.com/user-attachments/assets/377f34ad-dadd-43c6-bafc-bc40244543e1" />
 
-
-4. Настройка ssh
+2. Создание пользователей
 ```bash
-nano /etc/selinux/config
-# Заменив текст SELINUX=enforcing на SELINUX=permissive.
-setenforce 0
+ useradd net_admin -U
+ passwd net_admin #P@ssw0rd
+ usermod -aG wheel net_admin
+ 
+# Настроить команду sudo можно в файле /etc/sudoers, в нём хранятся все нужные параметры.
+visudo
+# Добавить строчки
+net_admin ALL=(ALL) NOPASSWD: ALL
+# Esc и :wq
 ```
-<img width="798" height="119" alt="image" src="https://github.com/user-attachments/assets/7d328fae-c075-4680-bb35-5c7e965d865d" />
-
-
-```bash
-nano /etc/ssh/sshd_config
-# Находим строчки и меняем если нет то добовляем
-Port 2026
-AllowUsers sshuser
-MaxAuthTries 2
-Banner /etc/ssh_banner
-
-systemctl restart sshd
-```
-<img width="362" height="443" alt="image" src="https://github.com/user-attachments/assets/4d69f30c-c425-4453-be06-20620866bf00" />
-<img width="252" height="60" alt="image" src="https://github.com/user-attachments/assets/98fb6f00-77fb-44f5-ab13-63d37c838101" />
+<img width="797" height="344" alt="image" src="https://github.com/user-attachments/assets/52cc290f-a12c-4dd9-a764-30ca6e554694" />
+<img width="873" height="187" alt="image" src="https://github.com/user-attachments/assets/eeae9a64-3d74-4f3f-b369-88d4a0a38464" />
 
 5. GRE тунель
 ```bash
