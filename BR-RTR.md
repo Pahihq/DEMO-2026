@@ -16,44 +16,7 @@ nmtui
 <img width="840" height="581" alt="image" src="https://github.com/user-attachments/assets/6d0a327d-ce5c-4664-9924-a87a6b391b7a" />
 <img width="831" height="281" alt="image" src="https://github.com/user-attachments/assets/8021c791-d237-4502-b277-282bc00113cf" />
 
-
-
-2. Создание пользователей
-
-```bash
- useradd sshuser -u 2026 -U
- passwd sshuser #P@ssw0rd
- useradd net_admin -U
- passwd net_admin #P@ssw0rd
- usermod -aG wheel sshuser
- usermod -aG wheel net_admin
- 
-# Настроить команду sudo можно в файле /etc/sudoers, в нём хранятся все нужные параметры.
-visudo
-# Добавить строчки
-sshuser ALL=(ALL) NOPASSWD: ALL
-net_admin ALL=(ALL) NOPASSWD: ALL
-```
-
-3. Настройка ssh
-```bash
-nano /etc/selinux/config
-# Заменив текст SELINUX=enforcing на SELINUX=permissive.
-setenforce 0
-```
-
-```bash
-nano /etc/ssh/sshd_config
-# Находим строчки и меняем если нет то добовляем
-Port 2026
-AllowUsers sshuser
-MaxAuthTries 2
-Banner /etc/ssh_banner
-
-systemctl restart sshd
-```
-
-4. GRE тунель
+2. GRE тунель
 ```bash
 **Производим настройку
 - Выбираем «Изменить подключение»
@@ -72,7 +35,7 @@ nmcli connection modify tun1 ip-tunnel.ttl 64
 <img width="774" height="701" alt="image" src="https://github.com/user-attachments/assets/e024f36e-c133-4a76-b48f-218f06aa2f8e" />
 
 
-5. Настройка динамической маршрутизации средствами FRR
+3. Настройка динамической маршрутизации средствами FRR
 ```bash
 dnf install -y frr
 # Для настройки ospf необходимо включить соответствующий демон в конфигурации /etc/frr/daemons
@@ -111,7 +74,7 @@ show ip ospf neighbor
 show ip route ospf
 ```
 
-6. Настройка динамической трансляции адресов
+4. Настройка динамической трансляции адресов
 ```bash
 sysctl -w net.ipv4.ip_forward=1
 sysctl net.ipv4.ip_forward >> /etc/sysctl.conf
