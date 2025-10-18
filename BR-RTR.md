@@ -34,6 +34,20 @@ nmcli connection modify tun1 ip-tunnel.ttl 64
 ```
 <img width="774" height="701" alt="image" src="https://github.com/user-attachments/assets/e024f36e-c133-4a76-b48f-218f06aa2f8e" />
 
+2. Создание пользователей
+```bash
+ useradd net_admin -U
+ passwd net_admin #P@ssw0rd
+ usermod -aG wheel net_admin
+ 
+# Настроить команду sudo можно в файле /etc/sudoers, в нём хранятся все нужные параметры.
+visudo
+# Добавить строчки
+net_admin ALL=(ALL) NOPASSWD: ALL
+# Esc и :wq
+```
+<img width="797" height="344" alt="image" src="https://github.com/user-attachments/assets/52cc290f-a12c-4dd9-a764-30ca6e554694" />
+<img width="873" height="187" alt="image" src="https://github.com/user-attachments/assets/eeae9a64-3d74-4f3f-b369-88d4a0a38464" />
 
 3. Настройка динамической маршрутизации средствами FRR
 ```bash
