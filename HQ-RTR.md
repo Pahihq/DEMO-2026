@@ -16,22 +16,19 @@ nmtui
 
 2. Создание пользователей
 ```bash
- useradd sshuser -u 2026 -U
- passwd sshuser #P@ssw0rd
- useradd net_admin -U
- passwd net_admin #P@ssw0rd
- usermod -aG wheel sshuser
- usermod -aG wheel net_admin
- 
+ useradd net_admin -U
+ passwd net_admin #P@ssw0rd
+ usermod -aG wheel net_admin
+ 
 # Настроить команду sudo можно в файле /etc/sudoers, в нём хранятся все нужные параметры.
 visudo
 # Добавить строчки
-sshuser ALL=(ALL) NOPASSWD: ALL
 net_admin ALL=(ALL) NOPASSWD: ALL
 # Esc и :wq
 ```
 <img width="797" height="344" alt="image" src="https://github.com/user-attachments/assets/52cc290f-a12c-4dd9-a764-30ca6e554694" />
 <img width="873" height="187" alt="image" src="https://github.com/user-attachments/assets/eeae9a64-3d74-4f3f-b369-88d4a0a38464" />
+
 
 
 3. Настройка vlan
@@ -83,21 +80,6 @@ net_admin ALL=(ALL) NOPASSWD: ALL
 Проверка:
 
 <img width="750" height="185" alt="image" src="https://github.com/user-attachments/assets/377f34ad-dadd-43c6-bafc-bc40244543e1" />
-
-2. Создание пользователей
-```bash
- useradd net_admin -U
- passwd net_admin #P@ssw0rd
- usermod -aG wheel net_admin
- 
-# Настроить команду sudo можно в файле /etc/sudoers, в нём хранятся все нужные параметры.
-visudo
-# Добавить строчки
-net_admin ALL=(ALL) NOPASSWD: ALL
-# Esc и :wq
-```
-<img width="797" height="344" alt="image" src="https://github.com/user-attachments/assets/52cc290f-a12c-4dd9-a764-30ca6e554694" />
-<img width="873" height="187" alt="image" src="https://github.com/user-attachments/assets/eeae9a64-3d74-4f3f-b369-88d4a0a38464" />
 
 5. GRE тунель
 ```bash
