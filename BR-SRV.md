@@ -16,9 +16,9 @@ nmtui
 
 2. Создание пользователей
 ```bash
- useradd sshuser -u 2026 -U
+ useradd sshuser -u 2026 -G wheel -U
  passwd sshuser #P@ssw0rd
- usermod -aG wheel sshuser
+
  
 # Настроить команду sudo можно в файле /etc/sudoers, в нём хранятся все нужные параметры.
 visudo
