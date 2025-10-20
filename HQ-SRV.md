@@ -131,7 +131,7 @@ hq-srv	IN	A	192.168.200.5
 hq-cli	IN	A	192.168.200.2
 br-srv	IN	A	192.168.250.2
 docker  IN  A   172.16.1.1     
-web     IN  A   172.16.1.2   
+web     IN  A   172.16.2.1 
 ```
 
 ```bash
