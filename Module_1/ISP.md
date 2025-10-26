@@ -25,7 +25,7 @@ nmtui
 # Может после перезагрузки отваливаться достаточно заново применить
 sysctl -w net.ipv4.ip_forward=1
 sysctl net.ipv4.ip_forward >> /etc/sysctl.conf
-syscctl -p 
+sysctl -p 
 ```
 <img width="723" height="299" alt="image" src="https://github.com/user-attachments/assets/2d34f196-c7e3-4883-9f42-0e7bad22d1ce" />
 
