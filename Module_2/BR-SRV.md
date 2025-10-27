@@ -100,7 +100,7 @@ ssh-copy-id user@192.168.200.3 #HQ-CLI
 172.16.1.2 ansible_user=net_admin
 
 # Дописываем в файл nano /etc/ansible/ansible.cfg
-host_key_cheking = false
+host_key_checking = false
 interpreter_python=auto_silent  
 
 ansible all -m ping
