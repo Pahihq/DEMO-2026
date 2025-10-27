@@ -123,11 +123,12 @@ services:
   db:
     image: mariadb:10.11
     container_name: db
+    restart: always
     environment:
-      MARIADB_DATABASE: testdb
-      MARIADB_USER: test
-      MARIADB_PASSWORD: P@ssw0rd
-      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: mariadb
+      MARIADB_USER: maria
+      MARIADB_PASSWORD: Passw0rd
+      MARIADB_ROOT_PASSWORD: Passw0rd
     volumes:
       - db_data:/var/lib/mysql
 
@@ -137,10 +138,10 @@ services:
     environment:
       DB_TYPE: maria
       DB_HOST: db
-      DB_NAME: testdb
+      DB_NAME: mariadb
       DB_PORT: 3306
-      DB_USER: test
-      DB_PASS: P@ssw0rd
+      DB_USER: maria
+      DB_PASS: Passw0rd
     ports:
       - "8080:8000"
     depends_on:
