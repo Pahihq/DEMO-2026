@@ -110,7 +110,7 @@ ansible all -m ping
 
 5. Развертывание веб приложение в docker
 ```bash
-dnf install docker-ce
+dnf install docker-ce docker-compose
 systemctl enable --now docker
 mount /dev/sr0 /mnt
 cd /mnt/docker
