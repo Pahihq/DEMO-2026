@@ -82,6 +82,7 @@ chronyc sources
 
 4. Настройка ansible
 ```bash
+dbf install ansible
 ssh-keygen
 ssh-copy-id -p 2026 sshuser@192.168.100.2 # HQ-SRV
 ssh-copy-id net_admin@172.16.1.2
