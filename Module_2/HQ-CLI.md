@@ -16,7 +16,7 @@ y
 # Перезагружаем и входим под доменным пользователем
 
 # Создаем файл nano /etc/sudoers.d/hq
-%hq ALL=(ALL) /usr/bin/cat, /usr/bin/grep, /usr/usr/bin/id
+%hq ALL=(ALL) /usr/bin/cat, /usr/bin/grep, /usr/bin/id
 ```
 
 2. Автомонтирование nfs
