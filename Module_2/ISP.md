@@ -15,8 +15,13 @@ chronyc sources # Проверка что работает
 chronyc clients # Проверка клиентов
 
 ```
-
-2. Настройка обратного прокси
+2 Настройка selinux
+```bash
+nano /etc/selinux/config
+# Заменив текст SELINUX=enforcing на SELINUX=permissive.
+setenforce 0
+```
+3. Настройка обратного прокси
 ```bash
 dnf install -y nginx
 systemctl enable --now nginx
@@ -43,7 +48,7 @@ nginx -t
 systemctl restart nginx
 ```
 
-3. Настройка аутентификации
+4. Настройка аутентификации
 ```bash
 dnf install -y httpd-tools
 htpasswd -c /etc/nginx/.htpasswd WEB
