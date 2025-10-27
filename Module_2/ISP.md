@@ -21,7 +21,7 @@ chronyc clients # Проверка клиентов
 dnf install -y nginx
 systemctl enable --now nginx
 
-# Редактируем файл nano /etc/nginx/conf.d/proxy.conf
+# Дозаписываем в /etc/nginx/nginx.conf перед последней скобкой }
 server {
     listen 80;
     server_name web.au-team.irpo;
