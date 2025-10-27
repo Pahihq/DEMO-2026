@@ -34,7 +34,7 @@ dnf install nfs-utils
 mkdir /raid/nfs
 chmod -R 777 /raid/nfs
 # Добовляем строчку nano /etc/exports
-/raid/nfs 192.168.200.0/27(rw)
+/raid/nfs 192.168.200.0/28(rw)
 
 systemctl enable --now nfs-server
 exportfs -ra
