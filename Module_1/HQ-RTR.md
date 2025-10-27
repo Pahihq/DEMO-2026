@@ -60,7 +60,7 @@ net_admin ALL=(ALL) NOPASSWD: ALL
 - «Родительский» указываем интерфейс в сторону HQ-CLI (ens224)
 - задаём «Индефикатор VLAN» (указываем согласно заданию 200)
 - переходим к «КОНФИГУРАЦИЯ IPv4»
-- задаём **адрес IPv4** для VLAN (192.168.200.1/27)
+- задаём **адрес IPv4** для VLAN (192.168.200.1/28)
 ```
 <img width="797" height="626" alt="image" src="https://github.com/user-attachments/assets/1b04912a-4126-4d06-919c-8178415896e0" />
 
@@ -169,9 +169,9 @@ cp /usr/share/doc/dhcp-server/dhcpd.conf.example /etc/dhcp/dhcpd.conf
 
 nano /etc/dhcp/dhcpd.conf
 
-subnet 192.168.200.0 netmask 255.255.255.224 {  
-range 192.168.200.2 192.168.200.30;  
-option domain-name-servers 192.168.100.5;  
+subnet 192.168.200.0 netmask 255.255.255.240 {  
+range 192.168.200.2 192.168.200.14;  
+option domain-name-servers 192.168.100.2;  
 option domain-name "au-team.irpo";  
 option routers 192.168.200.1;  
 default-lease-time 600;  
