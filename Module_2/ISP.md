@@ -2,9 +2,8 @@
 ```bash
 dnf install chrony
 # Редактируем файл nano /etc/chrony.conf
-# Коментируем строчки начинающиеся на server
+# Коментируем строчки начинающиеся на server кроме первое просто дописываем prefer
 # Дописываем это
-server 127.0.0.1 iburst prefer
 local stratum 5
 allow 0/0
 
