@@ -18,7 +18,6 @@ nmtui
 ```bash
  useradd net_admin -U
  passwd net_admin #P@ssw0rd
- usermod -aG wheel net_admin
  
 # Настроить команду sudo можно в файле /etc/sudoers, в нём хранятся все нужные параметры.
 visudo
@@ -148,8 +147,8 @@ show ip route ospf
 7. Настройка динамической трансляции адресов
 ```bash
 # Может после перезагрузки отваливаться достаточно заново применить
-sysctl -w net.ipv4.ip_forward=1
-sysctl net.ipv4.ip_forward >> /etc/sysctl.conf
+# Дописать строку файл nano /etc/sysctl.conf
+net.ipv4.ip_forward = 1 
 syscctl -p 
 
 nft add table ip nat
