@@ -26,7 +26,7 @@ hostnamectl set-hostname hq-srv.au-team.irpo; exec bash
 
 2. Создание пользователей
 ```bash
- useradd sshuser -u 2026 -G wheel -U
+ useradd sshuser -u 2026 -U
  passwd sshuser #P@ssw0rd
 
  
