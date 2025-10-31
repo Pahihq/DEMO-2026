@@ -16,7 +16,7 @@ nmtui
 
 2. Создание пользователей
 ```bash
- useradd sshuser -u 2026 -G wheel -U
+ useradd sshuser -u 2026 -U
  passwd sshuser #P@ssw0rd
 
  
