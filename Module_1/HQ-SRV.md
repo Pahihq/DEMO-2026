@@ -124,12 +124,12 @@ $TTL 1D
 					3H )	; minimum
 
 	IN	NS	au-team.irpo.
-	IN	A	192.168.100.5
+	IN	A	192.168.100.2
 hq-rtr	IN	A	192.168.200.1
 hq-rtr	IN	A	192.168.100.1
 hq-rtr	IN	A	192.168.0.1
 br-rtr	IN	A	192.168.250.1
-hq-srv	IN	A	192.168.200.5
+hq-srv	IN	A	192.168.100.2
 hq-cli	IN	A	192.168.200.2
 br-srv	IN	A	192.168.250.2
 docker  IN  A   172.16.2.1     
