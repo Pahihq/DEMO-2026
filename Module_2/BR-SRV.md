@@ -120,7 +120,7 @@ docker load -i mariadb_latest.tar
 # Создайте файл и внесите туда это содержимое
 ```
 
-```json
+```yaml
 services:
   db:
     image: mariadb:10.11
