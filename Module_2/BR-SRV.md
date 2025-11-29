@@ -97,7 +97,7 @@ ssh-copy-id user@192.168.200.3 #HQ-CLI
 172.16.1.2 ansible_user=net_admin
 192.168.200.3  ansible_user=user
 [br]
-172.16.1.2 ansible_user=net_admin
+172.16.2.2 ansible_user=net_admin
 
 # Дописываем в файл nano /etc/ansible/ansible.cfg\
 [defaults]
