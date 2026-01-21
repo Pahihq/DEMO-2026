@@ -70,7 +70,7 @@ CREATE USER 'web'@'localhost' IDENTIFIED BY 'P@ssw0rd';
 GRANT ALL PRIVILEGES ON webdb.* TO 'web'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
-
+iconv -f UTF-16 -t UTF-8 /root/dump.sql -o /var/www/html/dump.sql
 mariadb webdb < /mnt/web/dump.sql
 cp /mnt/web/index.php /var/www/html/
 cp /mnt/web/logo.png /var/www/html/
