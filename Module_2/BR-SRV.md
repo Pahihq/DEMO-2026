@@ -121,6 +121,7 @@ docker load -i mariadb_latest.tar
 ```
 
 ```yaml
+services:
   testapp:
     container_name: testapp
     image: site:latest
