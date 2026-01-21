@@ -30,8 +30,8 @@ systemctl enable --now nginx
 server {
     listen 80;
     server_name web.au-team.irpo;
-    auth_basic "Restricted Area";
-    auth_basic_user_file /etc/nginx/.htpasswd;
+	auth_basic "Restricted area";
+	auth_basic_user_file /etc/nginx/.htpasswd;
     location / { 
 	    proxy_pass http://172.16.1.2:8080; 
     }
