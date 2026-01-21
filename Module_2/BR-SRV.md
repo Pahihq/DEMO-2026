@@ -121,37 +121,33 @@ docker load -i mariadb_latest.tar
 ```
 
 ```yaml
-services:
-  db:
-    image: mariadb:10.11
-    container_name: db
-    restart: always
-    environment:
-      MARIADB_DATABASE: testdb
-      MARIADB_USER: test
-      MARIADB_PASSWORD: P@ssw0rd
-      MARIADB_ROOT_PASSWORD: 123
-    volumes:
-      - db_data:/var/lib/mysql
-
-  tespapp:
+  testapp:
+    container_name: testapp
     image: site:latest
-    container_name: tespapp
-    environment:
-      DB_TYPE: maria
-      DB_HOST: db
-      DB_NAME: testdb
-      DB_PORT: 3306
-      DB_USER: test
-      DB_PASS: P@ssw0rd
+    restart: always
     ports:
       - "8080:8000"
+    environment:
+      DB_HOST: "192.168.50.2"
+      DB_PORT: "3306"
+      DB_NAME: mariadb
+      DB_USER: maria
+      DB_PASS: Passw0rd
+      DB_TYPE: maria
     depends_on:
       - db
 
-volumes:
-  db_data:
-
+  db:
+    container_name: db
+    image: mariadb:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      DB_USER: maria
+      DB_PASS: Passw0rd
+      DN_NAME: mariadb
+      MARIADB_ROOT_PASSWORD: Passw0rd
 ```
 
 ```bash
