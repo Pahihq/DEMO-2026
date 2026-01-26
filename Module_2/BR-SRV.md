@@ -119,7 +119,40 @@ docker load -i site_latest.tar
 docker load -i mariadb_latest.tar
 # Создайте файл и внесите туда это содержимое
 ```
+Для нашего стенда
+```yaml
+services:
+ db:
+  container_name: db
+  image: mariadb:10.11
+  restart: always
+  ports:
+   - 3306:3306
+  environment:
+   MARIADB_DATABASE: testdb
+   MARIADB_USER: test
+   MARIADB_PASSWORD: P@ssw0rd
+   MARIADB_ROOT_PASSWORD: P@ssw0rd
 
+
+ testapp:
+  container_name: testapp
+  image: site:latest
+  restart: always
+  ports:
+   - 8080:8000
+  environment:
+   DB_TYPE: maria
+   DB_HOST: 192.168.250.2
+   DB_NAME: testdb
+   DB_PORT: 3306
+   DB_USER: test
+   DB_PASS: P@ssw0rd
+  depends_on:
+   - db
+```
+
+Для дубры
 ```yaml
 services:
   testapp:
