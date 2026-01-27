@@ -70,6 +70,8 @@ CREATE USER 'web'@'localhost' IDENTIFIED BY 'P@ssw0rd';
 GRANT ALL PRIVILEGES ON webdb.* TO 'web'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
+#перенести dump.sql в домашнюю рута
+cp /mnt/web/dump.sql /root/dump.sql
 iconv -f UTF-16 -t UTF-8 /root/dump.sql -o /var/www/html/dump.sql
 mariadb webdb < /mnt/web/dump.sql
 cp /mnt/web/index.php /var/www/html/
@@ -77,6 +79,8 @@ cp /mnt/web/logo.png /var/www/html/
 cp -r /mnt/web/images /var/www/html/
 
 chmod -R 755 /var/www/html
+ # перенести index.php в домашнюю рута
+cp /mnt/web/index.php /root/index.php
 iconv -f WINDOWS-1251 -t UTF-8 /root/index.php -o /var/www/html/index.php
 # Редактируем файл nano /var/www/html/index.php на нужные данные
 $host = "localhost";
