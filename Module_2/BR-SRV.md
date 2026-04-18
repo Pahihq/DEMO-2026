@@ -152,37 +152,6 @@ services:
    - db
 ```
 
-Для дубры
-```yaml
-services:
-  testapp:
-    container_name: testapp
-    image: site:latest
-    restart: always
-    ports:
-      - "8080:8000"
-    environment:
-      DB_HOST: "192.168.50.2"
-      DB_PORT: "3306"
-      DB_NAME: mariadb
-      DB_USER: maria
-      DB_PASS: Passw0rd
-      DB_TYPE: maria
-    depends_on:
-      - db
-
-  db:
-    container_name: db
-    image: mariadb:latest
-    restart: always
-    ports:
-      - "3306:3306"
-    environment:
-      DB_USER: maria
-      DB_PASS: Passw0rd
-      DN_NAME: mariadb
-      MARIADB_ROOT_PASSWORD: Passw0rd
-```
 
 ```bash
 docker compose up -d
