@@ -160,6 +160,15 @@ nano /etc/sysconfig/nftables.conf
 include "/etc/nftables.conf"
 systemctl enable --now nftables
 ```
+Должен получится такой конфиг
+```bash
+table ip nat {
+	chain postrouting {
+		type nat hook postrouting priority srcnat; policy accept;
+		oifname "ens18" masquerade
+	}
+}
+```
 
 8. Настройте протокол динамической конфигурации хостов для сети 
 ```bash 
