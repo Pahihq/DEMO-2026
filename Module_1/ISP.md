@@ -41,5 +41,14 @@ nano /etc/sysconfig/nftables.conf
 include "/etc/nftables.conf"
 systemctl enable --now nftables
 ```
+Должен получится такой конфиг
+```bash
+table ip nat {
+	chain postrouting {
+		type nat hook postrouting priority srcnat; policy accept;
+		oifname "ens18" masquerade
+	}
+}
+```
 <img width="868" height="177" alt="image" src="https://github.com/user-attachments/assets/83e8906a-6601-43e4-91d3-18ad65dbf71a" />
 
